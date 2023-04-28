@@ -1,0 +1,25 @@
+﻿@page "/pet-details"
+@using Models
+
+<MudImage Src="images/dog.jpg" Class="pet-image rounded-circle mx-auto" />
+
+
+
+@code {
+    PetsCardInfo pet = new PetsCardInfo
+        {
+            name = "Rufus",
+            species = "Cachorro",
+            years = "2 anos"
+        };
+}
+
+
+<style>
+    .pet-image {
+        margin-top: 24px;
+        border: 2px solid rgba(0, 0, 0, 0.5);
+        width: 124px;
+        height: 124px;
+    }
+</style>

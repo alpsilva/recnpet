@@ -1,9 +1,10 @@
 ﻿@page "/"
+@inject NavigationManager navigationManager
 
 <PageTitle>Index</PageTitle>
 
 <MudButton OnClick="Presence" Variant="Variant.Filled" Color="Color.Primary">Presença</MudButton>
-<MudButton OnClick="Presence" Variant="Variant.Filled" Color="Color.Primary">Reportar</MudButton>
+<MudButton OnClick="Report" Variant="Variant.Filled" Color="Color.Primary">Reportar</MudButton>
 <MudCarousel Class="mud-width-full" Style="height:200px;" TData="object">
     <MudCarouselItem Color="@Color.Primary">
         <div class="d-flex" style="height:100%">
@@ -69,11 +70,11 @@
     bool isOpen = false;
     void Presence()
     {
-
+        navigationManager.NavigateTo("/campaign");
     }
 
     void Report()
     {
-        
+        navigationManager.NavigateTo("/news");
     }
 }

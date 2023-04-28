@@ -1,9 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager navigationManager
 
-
-
-<MudThemeProvider/>
+<MudThemeProvider Theme="MyCustomTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 <MudLayout>
@@ -17,11 +15,13 @@
             <MudIconButton Href="/pets">
                 <MudAvatar Image="images/icon-192.png" />
             </MudIconButton>
-        
     }
     else
     {
-        <MudIconButton Href="/" Icon="@Icons.Material.Filled.ArrowBackIos"  Color="Color.Warning"/>
+        <div class="page-header-div">
+            <MudIconButton Href="/" Icon="@Icons.Material.Filled.ArrowBackIos"  Color="Color.Warning"/>
+            <p class="page-header-page-name">VOLTAR À TELA INICIAL</p>
+        </div>
     }
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
@@ -45,8 +45,39 @@
 
 
 @code {
+    Dictionary<string, string> urlToPortugueseName = new Dictionary<string, string>()
+    {
+        { "campaign", "Campanha" },
+        { "pets", "Meus pets" },
+        { "pet-details", "Detalhes do pet" },
+        { "news", "Notícia" },
+        { "user", "Página do usuário" },
+    };
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                AppbarBackground = "#FFF7EC",
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Blue.Lighten1
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "300px"
+            }
+        };
 
     public bool _drawerOpen = true;
+
+    string GetPagePortugueseName()
+    {
+        string pageName = navigationManager.ToBaseRelativePath(navigationManager.Uri);
+        return urlToPortugueseName[pageName];
+    }
 
     void DrawerToggle()
     {
