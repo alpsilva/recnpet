@@ -1,3 +1,6 @@
 ﻿.popover-div-button {
     width: 32px;
+    position: fixed;
+    bottom: 8px;
+    right: 18px;
 }

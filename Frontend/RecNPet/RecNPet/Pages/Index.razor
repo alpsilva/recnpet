@@ -24,7 +24,10 @@
 
 <MudCarousel Class="mud-width-full" ShowBullets="false" EnableSwipeGesture="true" AutoCycleTime="new TimeSpan(0, 0, 10)" 
         Style="height:200px;" TData="object"
->
+> 
+    <MudPaper>
+
+    </MudPaper>
     <MudCarouselItem Color="@Color.Primary">
         <div class="d-flex" style="height:100%">
             <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
@@ -43,19 +46,21 @@
 </MudCarousel>
 
 <div class="popover-div-button">
-
-    <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Small" 
+    <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Large" 
         OnClick="@(() => isOpen = !isOpen)"
     >
     </MudIconButton>
-    <MudPopover Open="isOpen" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
-        <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete"></MudIconButton>
+    <MudPopover Open="isOpen" AnchorOrigin="Origin.CenterLeft" TransformOrigin="Origin.CenterRight" Paper="false">
+        <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" Size="Size.Large"></MudIconButton>
+        Missing Dog
     </MudPopover>
-    <MudPopover Open="isOpen" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
-        <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete"></MudIconButton>
+    <MudPopover Open="isOpen" AnchorOrigin="Origin.TopLeft" TransformOrigin="Origin.BottomRight" Paper="false">
+        <MudIconButton Icon="@Icons.Material.Outlined.Info" aria-label="delete" Size="Size.Large"></MudIconButton>
+        Passeio
     </MudPopover>
-    <MudPopover Open="isOpen" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
-        <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete"></MudIconButton>
+    <MudPopover Open="isOpen" AnchorOrigin="Origin.TopCenter" TransformOrigin="Origin.BottomCenter" Paper="false">
+        <MudIconButton Icon="@Icons.Material.Filled._10mp" aria-label="delete" Size="Size.Large"></MudIconButton>
+        Denúncias
     </MudPopover>
 </div>
 
