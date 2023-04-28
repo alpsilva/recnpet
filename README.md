@@ -11,7 +11,10 @@ cd backend
 ```sh
 pip install -r requirements.txt
 ```
-3. Run the server
+
+3. Create a .env file with a BD_URL field and a serviceAccountKey.json in the database folder. Ask the tech lead for these files, because the app will not run without them!
+
+4. Run the server
 ```sh
 uvicorn main:app --reload
 ```
