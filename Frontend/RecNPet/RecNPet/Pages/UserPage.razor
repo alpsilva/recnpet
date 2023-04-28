@@ -1,8 +1,17 @@
 ﻿@page "/user"
 
-<MudImage Src="images/maxresdefault.jpg" Class="rounded-circle mx-auto user-photo">
+<MudImage Src="images/maxresdefault.jpg" Class="rounded-circle mx-auto" Style="width: 128px; height:128px; display: block;" />
 
-</MudImage>
+<div style="display: flex; margin: 0 10px; justify-content: space-around">
+    <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" Variant="Variant.Outlined" Class="justify-start" 
+        Size="Size.Large">
+    </MudIconButton>
+    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Primary" Variant="Variant.Outlined" aria-label="github" 
+        Size="Size.Large" Class="justify">
+    </MudIconButton>
+</div>
+
+
 
 @code {
 
