@@ -20,4 +20,4 @@ async def register_owner(location_id: str, owner_id: str):
     if response is None:
         raise HTTPException(status_code=500, detail="Something went wrong while inserting log.")
 
-    return {}
+    return { "key": response.key }
