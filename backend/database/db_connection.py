@@ -56,8 +56,11 @@ class DbConnection:
         uses the unique key to update the values in new_data on the db.
         Not all values need to be passed in new_data, just the ones being updated.
         """
-        db.reference(f"/{collection}/").child(key).update(new_data)
-
+        try:
+            db.reference(f"/{collection}/").child(key).update(new_data)
+        except Exception as e:
+            print(e)
+    
     def delete_data_by_key(self, collection: str, key: str):
         """
         Deletes the data present in the entry with the given key.
