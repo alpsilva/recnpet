@@ -7,9 +7,10 @@ app = FastAPI()
 
 db = DbConnection()
 
-@app.get("/")
-async def root():
-    return {"message": "aaaaaaaaaaaaaaaa World"}
+@app.get("/report/")
+async def get_report():
+    reports = db.get_all_data("reports")
+    return { "reports": reports }
 
 @app.put("/owner/")
 async def register_owner():
