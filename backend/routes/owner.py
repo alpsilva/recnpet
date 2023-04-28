@@ -34,6 +34,15 @@ async def register_owner(request: NewOwnerInput):
         raise HTTPException(status_code=500, detail="Something went wrong while inserting data.")
     return { "key": response.key }
 
+@router.get("/{cpf}/", status_code=200)
+async def get_owner_by_cpf(cpf: str):
+    """ Returns the owner whose cpf is the same as the given one. """
+    owner = db.get_data_by_value("owner", "cpf", cpf, 1)
+    if len(owner) == 0:
+        raise HTTPException(status_code=404, detail="Owner not found.")
+    for _, value in owner.items():
+        return { "owner": value }
+
 @router.put("/{owner_id}/pet/", status_code=200)
 async def register_pet(owner_id: str, request: NewPetInput):
     """ Inserts a new pet to owner. """
