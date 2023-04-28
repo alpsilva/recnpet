@@ -1,3 +1,3 @@
-from ..db_connection import DbConnection
+from database import DbConnection
 
 db = DbConnection()

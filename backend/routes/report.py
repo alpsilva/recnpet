@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from datetime import datetime
-from controller import db
+from .controller import db
 
 router = APIRouter(
     prefix="/report",
@@ -13,13 +13,13 @@ class NewReportInput(BaseModel):
     type: str
     coordinates: dict
 
-@router.get("/report/")
+@router.get("/")
 async def get_report():
     """ Returns all reports. """
     reports = db.get_all_data("reports")
     return { "reports": reports }
 
-@router.put("/report/", status_code=200)
+@router.put("/", status_code=200)
 async def register_report(request: NewReportInput):
     """
     Receives a report type and coordinates from the body.

@@ -1,4 +1,4 @@
-from config import database_credentials, database_config
+from .config import database_credentials, database_config
 from firebase_admin import db
 import firebase_admin
 
