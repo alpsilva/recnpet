@@ -22,6 +22,10 @@ class NewPetInput(BaseModel):
     race: str 
     breed: str
     stature: str
+    gender: str
+    fur: str
+    castrated: bool
+    description: str
 
 @router.put("/", status_code=200)
 async def register_owner(request: NewOwnerInput):
