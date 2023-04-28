@@ -20,7 +20,7 @@ class NewOwnerInput(BaseModel):
 class NewPetInput(BaseModel):
     name: str
     chip: str
-    race: str 
+    species: str 
     breed: str
     stature: str
     gender: str
@@ -33,6 +33,15 @@ class NewVaccineInput(BaseModel):
     vaccine_id: str
     applied_at: str
     valid_until: str
+
+class NewDiseaseInput(BaseModel):
+    name: str
+    description: str
+    symptoms: str
+    spreads_by_contact: bool
+    incubation_period_days: int
+    veterinary_id: str
+    diagonostic_date: str
 
 @router.put("/", status_code=200)
 async def register_owner(request: NewOwnerInput):
@@ -99,6 +108,34 @@ async def register_vaccine(owner_id: str, pet_id: str, request: NewVaccineInput)
             if "vaccines" not in pet:
                 pet["vaccines"] = []
             pet["vaccines"].append(new_vaccine)
+
+    db.update_data_by_key(
+        "owners",
+        owner_id,
+        { "pets": current_pets }
+    )
+
+    return { "pets": current_pets }
+
+@router.post("/{owner_id}/disease/{pet_id}/", status_code=200)
+async def register_disease(owner_id: str, pet_id: str, request: NewDiseaseInput):
+    """ Inserts a disease register to the owner's pet. """
+
+    new_disease = request.dict()
+    new_disease["register_date"] = str(datetime.now())
+
+    current_data = db.get_data_by_key("owners", owner_id, 1)
+    for _, value in current_data.items():
+        current_pets = value.get("pets", [])
+
+    if type(current_pets) == dict:
+        current_pets = list(current_pets.values())
+
+    for pet in current_pets:
+        if pet["chip"] == pet_id:
+            if "diseases" not in pet:
+                pet["diseases"] = []
+            pet["diseases"].append(new_disease)
 
     db.update_data_by_key(
         "owners",
