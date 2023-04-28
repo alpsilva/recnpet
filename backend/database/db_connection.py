@@ -1,5 +1,5 @@
 from .config import database_credentials, database_config
-from firebase_admin import db
+from firebase_admin import db, firestore
 import firebase_admin
 
 class DbConnection:
@@ -60,6 +60,17 @@ class DbConnection:
             db.reference(f"/{collection}/").child(key).update(new_data)
         except Exception as e:
             print(e)
+    
+    def add_to_array_data_by_key(self, collection: str, key: str, new_data: dict):
+        """
+        uses the unique key to update the values in new_data on the db.
+        """
+        response = None
+        try:
+            response = db.reference(f"/{collection}/").child(key).child("logs").push(new_data)
+        except Exception as e:
+            print(e)
+        return response
     
     def delete_data_by_key(self, collection: str, key: str):
         """
