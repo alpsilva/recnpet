@@ -44,7 +44,12 @@ class DbConnection:
     def push_data(self, collection: str, data: dict):
         """
         """
-        db.reference(f"/{collection}/").push(data)
+        response = None
+        try:
+            response = db.reference(f"/{collection}/").push(data)
+        except Exception as e:
+            print(e)
+        return response
 
     def update_data_by_key(self, collection: str, key: str, new_data: dict):
         """
