@@ -40,8 +40,8 @@ async def get_owner_by_cpf(cpf: str):
     owner = db.get_data_by_value("owner", "cpf", cpf, 1)
     if len(owner) == 0:
         raise HTTPException(status_code=404, detail="Owner not found.")
-    for _, value in owner.items():
-        return { "owner": value }
+    for key, value in owner.items():
+        return { "key": key, "owner": value }
 
 @router.put("/{owner_id}/pet/", status_code=200)
 async def register_pet(owner_id: str, request: NewPetInput):
