@@ -33,13 +33,18 @@ class DbConnection:
         Returns the data with the same key.
         Optionally, a limit can be passed to cut the response to the first x entries.
         """
-        return (
+        response = None
+        try:
+            response = (
             db.reference(f"/{collection}/")
             .order_by_key()
             .equal_to(key)
             .limit_to_first(limit)
             .get()
         )
+        except Exception as e:
+            print(e)
+        return response
 
     def push_data(self, collection: str, data: dict):
         """
