@@ -143,4 +143,6 @@ async def register_disease(owner_id: str, pet_id: str, request: NewDiseaseInput)
         { "pets": current_pets }
     )
 
+    # TODO: Alert owners whose dogs may have been in contact with this one of the possibility of disease.
+
     return { "pets": current_pets }
