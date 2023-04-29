@@ -1,4 +1,4 @@
-.page-header-div {
+﻿.page-header-div {
     display: flex;
 }
 
@@ -91,39 +91,3 @@ main {
         padding-right: 1.5rem !important;
     }
 }
-
-.pets-button-container {
-    margin-top: 8px;
-}
-
-.pets-subtitle {
-    font-size: 10px;
-    color: black;
-    margin-top: -20px;
-    text-align: center;
-    color: white;
-}
-
-.pets-button{
-    padding: 8px !important;
-}
-
-.person-text {
-    margin-top: 16px;
-}
-
-    .person-text .title {
-        font-family: 'Xilosa';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 20px;
-    }
-
-    .person-text .subtitle {
-        font-family: 'Sora';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 13px;
-    }

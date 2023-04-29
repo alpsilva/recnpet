@@ -1,73 +1,83 @@
 ﻿@page "/"
 @inject NavigationManager navigationManager
-
+@using GoogleMapsComponents
+@using GoogleMapsComponents.Maps
 <PageTitle>Index</PageTitle>
+
+<!--
 
 <MudButton OnClick="Presence" Variant="Variant.Filled" Color="Color.Primary">Presença</MudButton>
 <MudButton OnClick="Report" Variant="Variant.Filled" Color="Color.Primary">Reportar</MudButton>
-<MudCarousel Class="mud-width-full" Style="height:200px;" TData="object">
-    <MudCarouselItem Color="@Color.Primary">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
-        </div>
-    </MudCarouselItem>
-    <MudCarouselItem Color="@Color.Secondary">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
-        </div>
-    </MudCarouselItem>
-    <MudCarouselItem>
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
-        </div>
-    </MudCarouselItem>
-</MudCarousel>
+-->
 
-<MudCarousel Class="mud-width-full" ShowBullets="false" EnableSwipeGesture="true" AutoCycleTime="new TimeSpan(0, 0, 10)" 
-        Style="height:200px;" TData="object"
-> 
-    <MudPaper>
 
-    </MudPaper>
-    <MudCarouselItem Color="@Color.Primary">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+<div class="news-container">
+    @foreach (int i in x)
+    {
+        <div class="news-container-item">
+            <img src="images/dog.jpg"/>
+            <div class="legend">
+
+                <p class="title">Mitos sobre a Raiva</p>
+                <p class="subtitle">Algum texto interessante falando sobre mitos sobre a raiva</p>
+            </div>
         </div>
-    </MudCarouselItem>
-    <MudCarouselItem Color="@Color.Secondary">
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+    }
+</div>
+
+<h3>Campanhas</h3>
+<div class="campaign-container">
+    @foreach (int i in x)
+    {
+        <div class="campaign-container-item">
+            <img src="images/dog.jpg" />
+            <p class="title">Mitos sobre a Raiva</p>
+            <p class="subtitle">Algum texto interessante falando sobre mitos sobre a raiva</p>
         </div>
-    </MudCarouselItem>
-    <MudCarouselItem>
-        <div class="d-flex" style="height:100%">
-            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
-        </div>
-    </MudCarouselItem>
-</MudCarousel>
+    }
+</div>
+
+<!--
 
 <div class="popover-div-button">
-    <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="Size.Large" 
+    <MudIconButton Icon="@Icons.Material.Filled.Delete" Variant="Variant.Outlined" Color="Color.Primary" Size="MudBlazor.Size.Large" 
         OnClick="@(() => isOpen = !isOpen)"
     >
     </MudIconButton>
     <MudPopover Open="isOpen" AnchorOrigin="Origin.CenterLeft" TransformOrigin="Origin.CenterRight" Paper="false">
-        <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" Size="Size.Large"></MudIconButton>
+        <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" Size="MudBlazor.Size.Large"></MudIconButton>
         Missing Dog
     </MudPopover>
     <MudPopover Open="isOpen" AnchorOrigin="Origin.TopLeft" TransformOrigin="Origin.BottomRight" Paper="false">
-        <MudIconButton Icon="@Icons.Material.Outlined.Info" aria-label="delete" Size="Size.Large"></MudIconButton>
+        <MudIconButton Icon="@Icons.Material.Outlined.Info" aria-label="delete" Size="MudBlazor.Size.Large"></MudIconButton>
         Passeio
     </MudPopover>
     <MudPopover Open="isOpen" AnchorOrigin="Origin.TopCenter" TransformOrigin="Origin.BottomCenter" Paper="false">
-        <MudIconButton Icon="@Icons.Material.Filled._10mp" aria-label="delete" Size="Size.Large"></MudIconButton>
+        <MudIconButton Icon="@Icons.Material.Filled._10mp" aria-label="delete" Size="MudBlazor.Size.Large"></MudIconButton>
         Denúncias
     </MudPopover>
+</div>
+-->
+
+<br />
+<h3 >Na sua vizinhança</h3>
+<div class="maps-size">
+    <iframe width="600"
+            height="600"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="@("https://www.google.com/maps/embed/v1/place?key=AIzaSyC7Ab1h3Ybrjhcon1gAgxF6oPK5QjX8NfA&q=-8.054112966972916,-34.95521409393704")">
+    </iframe>
 </div>
 
 
 @code {
     bool isOpen = false;
+    List<int> x = new List<int>(new int[10]);
+
+
     void Presence()
     {
         navigationManager.NavigateTo("/campaign");

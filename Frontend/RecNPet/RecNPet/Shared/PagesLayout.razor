@@ -6,23 +6,10 @@
 <MudSnackbarProvider />
 <MudLayout>
     <MudAppBar Elevation="25">
-        <div class="pets-button-container">
-            <MudIconButton Href="/pets" Class="pets-button">
-                <MudAvatar Image="images/petsIcon.svg" />
-            </MudIconButton>
-            <p class="pets-subtitle">
-                Meus Pets
-            </p>
+        <div class="page-header-div">
+            <MudIconButton OnClick="ReturnToPage" Icon="@Icons.Material.Filled.ArrowBackIos" Color="Color.Warning" />
+            <p class="page-header-page-name">@GetPagePortugueseName()</p>
         </div>
-        <MudSpacer />
-        <div class="person-text">
-            <p class="title">Olá, Fulano</p>
-            <p class="subtitle">Como você quer proteger seu pet hoje?</p>
-        </div>
-        <MudSpacer />
-        <MudBadge Overlap="true" Dot="true" Color="Color.Info">
-            <MudIconButton Icon="@Icons.Material.Filled.NotificationsNone" Size="Size.Large" />
-        </MudBadge>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
         <NavMenu />
@@ -48,7 +35,7 @@
         {
             Palette = new PaletteLight()
             {
-                AppbarBackground = "#ED8000",
+                AppbarBackground = "#FFF7EC",
             },
             PaletteDark = new PaletteDark()
             {
@@ -58,8 +45,7 @@
             LayoutProperties = new LayoutProperties()
             {
                 DrawerWidthLeft = "260px",
-                DrawerWidthRight = "300px",
-                AppbarHeight = "120px",
+                DrawerWidthRight = "300px"
             },
         };
 
@@ -98,50 +84,6 @@
 
     protected override void OnInitialized()
     {
-        if (navigationManager.ToBaseRelativePath(navigationManager.Uri) == "")
-        {
-            appbarPadding = "32px";
-            MyCustomTheme = new MudTheme()
-                {
-                    Palette = new PaletteLight()
-                    {
-                        AppbarBackground = "#ED8000",
-                    },
-                    PaletteDark = new PaletteDark()
-                    {
-                        Primary = Colors.Blue.Lighten1
-                    },
-
-                    LayoutProperties = new LayoutProperties()
-                    {
-                        DrawerWidthLeft = "260px",
-                        DrawerWidthRight = "300px",
-                        AppbarHeight = "120px",
-                    },
-                    
-                };
-        }
-        else
-        {
-            appbarPadding = "16px";
-            MyCustomTheme = new MudTheme()
-                {
-                    Palette = new PaletteLight()
-                    {
-                        AppbarBackground = "#FFF7EC",
-                    },
-                    PaletteDark = new PaletteDark()
-                    {
-                        Primary = Colors.Blue.Lighten1
-                    },
-
-                    LayoutProperties = new LayoutProperties()
-                    {
-                        DrawerWidthLeft = "260px",
-                        DrawerWidthRight = "300px"
-                    },
-                };
-        }
         StateHasChanged();
     }
 
