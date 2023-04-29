@@ -1,5 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@using Services
 @inject NavigationManager navigationManager
+@inject PetInfoService info
 
 <MudThemeProvider Theme="MyCustomTheme" />
 <MudDialogProvider />
@@ -16,7 +18,7 @@
         </div>
         <MudSpacer />
         <div class="person-text">
-            <p class="title">Olá, Fulano</p>
+            <p class="title">@($"Olá, {info.Owner.owner.name}")</p>
             <p class="subtitle">Como você quer proteger seu pet hoje?</p>
         </div>
         <MudSpacer />
@@ -24,9 +26,6 @@
             <MudIconButton Icon="@Icons.Material.Filled.NotificationsNone" Size="Size.Large" />
         </MudBadge>
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
-        <NavMenu />
-    </MudDrawer>
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
             @Body

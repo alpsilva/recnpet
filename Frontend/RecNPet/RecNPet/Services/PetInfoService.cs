@@ -36,5 +36,7 @@ namespace RecNPet.Services
         };
 
         public Owner Owner { get; set; }
+        public News news { get; set; }
+        public Reports reports { get; set; }
     }
 }
