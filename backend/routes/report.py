@@ -28,7 +28,7 @@ class NewMissingReportInput(BaseModel):
 async def get_report():
     """ Returns all reports. """
     reports = db.get_all_data("reports")
-    return { "reports": reports }
+    return { "reports": list(reports.values()) }
 
 @router.put("/", status_code=200)
 async def register_report(request: NewReportInput):
@@ -52,7 +52,7 @@ async def register_report(request: NewReportInput):
 async def get_missing_report():
     """ Returns all missing reports. """
     reports = db.get_all_data("missing_reports")
-    return { "reports": reports }
+    return { "reports": list(reports.values()) }
 
 @router.put("/missing/", status_code=200)
 async def register_missing_report(request: NewMissingReportInput):

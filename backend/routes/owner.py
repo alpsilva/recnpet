@@ -132,7 +132,7 @@ async def register_disease(owner_id: str, pet_id: str, request: NewDiseaseInput)
         current_pets = list(current_pets.values())
 
     for pet in current_pets:
-        if pet["chip"] == pet_id:
+        if pet["chip"] == int(pet_id):
             if "diseases" not in pet:
                 pet["diseases"] = []
             pet["diseases"].append(new_disease)
@@ -143,6 +143,31 @@ async def register_disease(owner_id: str, pet_id: str, request: NewDiseaseInput)
         { "pets": current_pets }
     )
 
-    # TODO: Alert owners whose dogs may have been in contact with this one of the possibility of disease.
+    notify_owners = set()
+    incubation_time = new_disease["incubation_period_days"]
+    locations = db.get_all_data("locations")
+
+    for key, value in locations.items():
+        logs = value.get("logs", [])
+        for log_key, log in logs.items():
+            if (datetime.today() - datetime.strptime(log["date"], "%d/%m/%Y %H:%M:%S")).days <= incubation_time:
+                notify_owners.add(log["owner_id"])
+
+    try:
+        notify_owners.remove(owner_id)
+    except:
+        pass
+        
+    for other_owner in notify_owners:
+        new_notification = {
+            "title": "Seu animal pode ter sido exposto a uma doença.",
+            "description": """
+                            Um animal que frequenta uma das localizações onde você marcou presença recentemente apresentou sintomas de uma doença contagiosa.
+                            Preste atenção no seu bichinho e procure ajuda profissional ao perceber qualquer sinal de comportamento anormal.
+                            """,
+            "register_date": str(datetime.now()),
+            "owner_id": other_owner
+        }
+        db.push_data("notifications", new_notification)
 
     return { "pets": current_pets }
