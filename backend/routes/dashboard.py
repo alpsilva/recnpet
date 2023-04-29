@@ -8,7 +8,7 @@ router = APIRouter(
 )
 
 @router.get("/castration/", status_code=200)
-async def register_owner():
+async def get_dashboard_infos():
     """ Returns the number of animals distributed between castrated and not, and grouped by sex. """
     response = db.get_all_data("owners")
     if response is None:
