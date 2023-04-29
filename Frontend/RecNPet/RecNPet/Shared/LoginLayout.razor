@@ -1,0 +1,31 @@
+﻿@inherits LayoutComponentBase
+
+
+<MudThemeProvider />
+<MudSnackbarProvider />
+
+<CascadingValue Value="this">
+    <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center" Style="height: 100vh;">
+        <div class="@($"d-flex flex-column mud-width-full {_containerClass}")">
+            <MudPaper Elevation="25" Class="pa-8" Width="100%" MaxWidth="500px">
+                <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large" Style="width:100px; height:100px;" />
+                @Body
+            </MudPaper>
+            <!--<MudAlert Severity="Severity.Info" Class="mt-8 mud-width-full" Style="max-width:500px;" >No authentication is required, click sign in.</MudAlert>!-->
+        </div>
+    </MudContainer>
+</CascadingValue>
+
+
+@code {
+    private string _containerClass = "";
+    public string containerClass
+    {
+        get => _containerClass;
+        set
+        {
+            _containerClass = value;
+            InvokeAsync(() => StateHasChanged());
+        }
+    }
+}

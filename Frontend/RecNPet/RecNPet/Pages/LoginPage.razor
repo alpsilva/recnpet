@@ -1,0 +1,79 @@
+﻿@page "/login"
+@layout LoginLayout
+@using Models
+@using Services
+@inject ApiService apiService
+@inject PetInfoService info
+@inject NavigationManager navigationManager
+
+<EditForm Model="model" OnValidSubmit="OnPost">
+    <DataAnnotationsValidator />
+
+    <MudText Typo="Typo.h4" GutterBottom="true">Entrar</MudText>
+
+    <MudTextField T="string" Label="CPF" Variant="Variant.Outlined" @bind-Value="@model.CPF" For="@(() => model.CPF)"></MudTextField>
+    <MudTextField T="string" Label="Senha" Variant="Variant.Outlined"></MudTextField>
+    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" FullWidth="true">Entrar</MudButton>
+</EditForm>
+
+
+
+@code {
+    [CascadingParameter]
+    public LoginLayout layout { get; set; }
+    LoginModel model = new LoginModel();
+
+    bool passwordVisibility;
+
+    string errorMessage = "";
+    bool errorMessageisVisible = false;
+
+
+
+    private async Task OnPost()
+    {
+        LoginOwner owner = new LoginOwner();
+
+        try
+        {
+            info.Owner = await apiService.GetOwners(model.CPF);
+            navigationManager.NavigateTo("/index");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            switch (ex.Message)
+            {
+                case "Invalid password":
+                    resetErrorMessages();
+                    showErrorMessage("Senha incorreta");
+                    await ShakeForms();
+                    break;
+                case "User does not exist":
+                    resetErrorMessages();
+                    showErrorMessage("Usuário não existe");
+                    await ShakeForms();
+                    break;
+            }
+        }
+    }
+
+    private void showErrorMessage(string message)
+    {
+        errorMessage = message;
+        errorMessageisVisible = true;
+    }
+
+    private async Task ShakeForms()
+    {
+        layout.containerClass = "shake";
+        await Task.Delay(800);
+        layout.containerClass = "";
+    }
+
+    private void resetErrorMessages()
+    {
+        errorMessageisVisible = false;
+        errorMessage = "";
+    }
+}

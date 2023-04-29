@@ -7,37 +7,120 @@
 <div class="pet-container align-items-center justify-content-center">
     <MudImage Src="images/dog.jpg" Class="pet-image rounded-circle mx-auto" />
     <h2 style="text-align: center;">@info.name</h2>
-    <MudPaper Elevation="25" Class="pets-card">
-        <div class="pets-card-container">
-            <div class="pet-title">
-                <MudImage Src="images/badge.svg"/>
-                <p class="pet-title-text">Ficha básica</p>
+    @if(hidden)
+    {
+        <MudPaper Elevation="25" Class="pets-card">
+            <div class="pets-card-container">
+                @if (noDisease)
+                {
+                    <div>Sem nenhum histórico de doenças.</div>
+                }
+                else
+                {
+                    <div class="pet-title">
+                        <MudImage Src="images/badge.svg" />
+                        <p class="pet-title-text">Ficha básica</p>
+                    </div>
+                    <div>@($"Nome da doença: {currDisease.name}")</div>
+                    <div>@($"Descrição: {currDisease.description}")</div>
+                    <div>@($"Sintomas: {currDisease.symptoms}")</div>
+                    <div>@($"Se espalha por contato: {(currDisease.spreads_by_contact ? "Sim" : "Não")}")</div>
+                    <div>@($"Data de diagnóstico: {currDisease.diagonostic_date}")</div>
+                }
             </div>
-            <div>@($"Espécie: {info.species}")</div>
-            <div>@($"Idade: {info.years}")</div>
-            <div>@($"Raça: {info.species}")</div>
-            <div>@($"Sexo: {info.sex}")</div>
-            <div>@($"Castrado: {(info.castrated ? "Sim" : "Não")}")</div>
-        </div>
-    </MudPaper>
+        </MudPaper>
+    }
+    else
+    {
+        <MudPaper Elevation="25" Class="pets-card">
+            <div class="pets-card-container">
+                <div class="pet-title">
+                    <MudImage Src="images/badge.svg" />
+                    <p class="pet-title-text">Histórico de Doenças</p>
+                </div>
+                <div>@($"Espécie: {info.species}")</div>
+                <div>@($"Idade: 2 anos")</div>
+                <div>@($"Raça: {info.species}")</div>
+                <div>@($"Sexo: {info.gender}")</div>
+                <div>@($"Castrado: {(info.castrated ? "Sim" : "Não")}")</div>
+            </div>
+        </MudPaper>
+    }
 </div>
 <br />
-<div style="text-align: center;">
-    <MudFab Label="CARTÃO DE VACINA" Color="Color.Warning" />
-    <MudFab Label="HISTÓRICO" Color="Color.Warning" />
-</div>
+@if(hidden)
+{
+    <div style="text-align: center;">
+        <MudFab StartIcon="@Icons.Material.Filled.ArrowBackIos" OnClick="@PreviousDisease"/>
+        <MudFab StartIcon="@Icons.Material.Filled.ArrowForwardIos" OnClick="@NextDisease"/>
+        <MudFab Label="VOLTAR" Color="Color.Warning" OnClick="@ChangeHidden"/>
+    </div>
+}
+else
+{
+    <div style="text-align: center;">
+        <MudFab Label="CARTÃO DE VACINA" Color="Color.Warning" />
+        <MudFab Label="HISTÓRICO" Color="Color.Warning" OnClick="@ViewDiseases" />
+    </div>
+}
 
 
 @code {
     [Parameter]
     public int index { get; set; }
 
-    PetsCardInfo info = new PetsCardInfo();
+    bool hidden = false;
+
+    Pet info = new Pet();
+    Disease currDisease = new Disease();
+    bool noDisease = false;
+
+    List<Disease> diseases = new List<Disease>();
 
     protected override void OnParametersSet()
     {
-        info = petInfos.infos[index];
+        info = petInfos.Owner.owner.pets[index];
     }
+
+    void ChangeHidden()
+    {
+        hidden = !hidden;
+        StateHasChanged();
+    }
+
+    void PreviousDisease()
+    {
+        if (noDisease) return;
+        int index = info.diseases.IndexOf(currDisease);
+
+        if (index > 0) currDisease = info.diseases[index - 1];
+        StateHasChanged();
+    }
+
+    void NextDisease()
+    {
+        if (noDisease) return;
+        int index = info.diseases.IndexOf(currDisease);
+
+        if (index < info.diseases.Count - 1) currDisease = info.diseases[index + 1];
+
+        StateHasChanged();
+    }
+
+    void ViewDiseases()
+    {
+        if (info.diseases != null && info.diseases.Count > 0)
+        {
+            currDisease = info.diseases[0];
+            hidden = true;
+        }
+        else
+        {
+            noDisease = true;
+            hidden = true;
+        }
+    }
+
 }
 
 

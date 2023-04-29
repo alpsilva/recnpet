@@ -1,7 +1,11 @@
-﻿@page "/"
+﻿@page "/index"
 @inject NavigationManager navigationManager
-@using GoogleMapsComponents
-@using GoogleMapsComponents.Maps
+@using Services
+@using Models
+@using System.Text.Json.Serialization
+@using System.Text.Json
+@inject ApiService api
+@inject HttpClient Http
 <PageTitle>Index</PageTitle>
 
 <!--
@@ -77,6 +81,13 @@
     bool isOpen = false;
     List<int> x = new List<int>(new int[10]);
 
+
+
+    async Task CallApi()
+    {
+        var x = await Http.GetFromJsonAsync<News>("/news/");
+        var z = await Http.GetFromJsonAsync<Reports>("/report/");
+    }
 
     void Presence()
     {

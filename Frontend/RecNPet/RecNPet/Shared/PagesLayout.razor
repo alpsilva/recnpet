@@ -11,9 +11,6 @@
             <p class="page-header-page-name">@GetPagePortugueseName()</p>
         </div>
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
-        <NavMenu />
-    </MudDrawer>
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
             @Body

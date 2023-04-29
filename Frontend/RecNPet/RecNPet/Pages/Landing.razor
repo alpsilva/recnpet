@@ -1,0 +1,35 @@
+﻿@page "/"
+@layout NullLayout
+@inject NavigationManager navigationManager
+
+<div class="fill container"
+     style="background-image: url('images/landing.svg');"
+>   
+    <div class="button" style="text-align: center;">
+        <MudFab OnClick="@GoToLoginPage" Label="ENTRAR COM GOV.BR" Color="Color.Warning" Style="margin-bottom: 8px;"></MudFab>
+        <MudText Color="Color.Warning">COMO FUNCIONA?</MudText>
+    </div>
+</div>
+@code {
+    void GoToLoginPage()
+    {
+        navigationManager.NavigateTo("/login");
+    }
+}
+
+<style>
+    .button {
+        position: absolute;
+        left: 50%;
+        top: 55%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .fill {
+        background-size: cover;
+        background-position: center;
+        width: 100vw;
+        height: 100vh;
+    }
+</style>

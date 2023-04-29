@@ -6,7 +6,7 @@
 @inject PetInfoService petInfos
 
 <div class="pets-container align-items-center justify-content-center">
-    @foreach(PetsCardInfo pets in petInfos.infos)
+    @foreach (Pet pets in petInfos.Owner.owner.pets)
     {
         <MudPaper Elevation="25" Class="pets-card" onclick="@(() => GoTopetDetailsPage(pets))">
             <div class="pets-card-container">
@@ -14,7 +14,7 @@
                 <div class="pet-title">@pets.name</div>
                 <div class="pet-subtitle">
                     <span>@pets.species</span>
-                    <span>@pets.years</span>
+                    <span>2 anos</span>
                 </div>
             </div>
         </MudPaper>
@@ -29,9 +29,9 @@
 
 @code {
 
-    void GoTopetDetailsPage(PetsCardInfo info)
+    void GoTopetDetailsPage(Pet info)
     {
-        int index = petInfos.infos.IndexOf(info);
+        int index = petInfos.Owner.owner.pets.IndexOf(info);
         navigationManager.NavigateTo($"/pet-details/{index}");
     }
 }
