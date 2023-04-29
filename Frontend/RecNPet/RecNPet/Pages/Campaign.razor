@@ -1,0 +1,55 @@
+﻿@page "/campaign"
+@layout PagesLayout
+
+<div class="campaign-container">
+    <MudImage Src="images/dog.jpg" Class="campaign-image" />
+    <p class="campaign-title">Nome da campanha</p>
+    <div class="campaign-subtitle">
+        <span style="font-weight: 500;">locais: </span>
+        <span>asodijaiosdjaosasioajsdoai</span>
+    </div>
+    <div class="campaign-text">
+        @lorem
+    </div>
+
+    <MudFab Color="Color.Primary" Label="QUERO PARTICIPAR" Class="campaign-participation-button"></MudFab>
+    <MudFab Label="SAIBA MAIS" DisableElevation="true" Style="background-color: #FFFFFF;"></MudFab>
+</div>
+
+@code {
+    string lorem = "Lorem ipsum dolor sit amet. Sed laboriosam  vero sunt. Non nemo nobis sed animi esse non dolores voluptatem ut esse expedita sit quam impedit qui architecto eaque ea repudiandae voluptatum. Et minus voluptas et doloribus possimus fuga nemo qui voluptatem voluptate hic quia odio. Eos animi odio est doloribus expedita ut iure enim qui minus eveniet aut exercitationem dolorem sit consequatur autem aut necessitatibus ipsum.";
+}
+
+<style>
+    .campaign-container {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+
+    .campaign-image {
+        width: 100%;
+        display: block;
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+
+    .campaign-subtitle {
+        margin-bottom: 8px;
+    }
+
+    .campaign-title {
+        font-size: calc(1.3rem + .6vw);
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: 0px;
+    }
+
+    .campaign-text {
+        margin-bottom: 8px;
+    }
+
+    .campaign-participation-button {
+        margin-bottom: 8px;
+    }
+</style>

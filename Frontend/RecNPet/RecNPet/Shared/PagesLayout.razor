@@ -1,0 +1,96 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager navigationManager
+
+<MudThemeProvider Theme="MyCustomTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudLayout>
+    <MudAppBar Elevation="25">
+        <div class="page-header-div">
+            <MudIconButton OnClick="ReturnToPage" Icon="@Icons.Material.Filled.ArrowBackIos" Color="Color.Warning" />
+            <p class="page-header-page-name">@GetPagePortugueseName()</p>
+        </div>
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+
+@code {
+    Dictionary<string, string> urlToPortugueseName = new Dictionary<string, string>()
+    {
+        { "campaign", "VOLTAR À TELA INICIAL" },
+        { "pets", "VOLTAR À TELA INICIAL" },
+        { "pet-details", "VOLTAR AOS PETS" },
+        { "news", "VOLTAR À TELA INICIAL" },
+        { "user", "VOLTAR À TELA INICIAL" },
+    };
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                AppbarBackground = "#FFF7EC",
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Blue.Lighten1
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "300px"
+            },
+        };
+
+
+    public bool _drawerOpen = true;
+
+    string appbarPadding = "0px";
+
+    void ReturnToPage()
+    {
+        string relativeUrl = navigationManager.ToBaseRelativePath(navigationManager.Uri);
+
+        switch (relativeUrl)
+        {
+            case string s when s.StartsWith("pet-details"):
+                navigationManager.NavigateTo("/pets");
+                break;
+            default:
+                navigationManager.NavigateTo("/");
+                break;
+        }
+    }
+
+    string GetPagePortugueseName()
+    {
+        string pageName = navigationManager.ToBaseRelativePath(navigationManager.Uri);
+
+        if (pageName.StartsWith("pet-details")) return urlToPortugueseName["pet-details"];
+        return urlToPortugueseName[pageName];
+    }
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    protected override void OnInitialized()
+    {
+        StateHasChanged();
+    }
+
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("Personal", href: "#"),
+        new BreadcrumbItem("Dashboard", href: "#"),
+    };
+
+}
