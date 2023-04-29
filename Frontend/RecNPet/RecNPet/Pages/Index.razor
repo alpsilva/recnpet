@@ -1,7 +1,11 @@
-﻿@page "/"
+﻿@page "/index"
 @inject NavigationManager navigationManager
-@using GoogleMapsComponents
-@using GoogleMapsComponents.Maps
+@using Services
+@using Models
+@using System.Text.Json.Serialization
+@using System.Text.Json
+@inject ApiService api
+@inject HttpClient Http
 <PageTitle>Index</PageTitle>
 
 <!--
@@ -61,6 +65,7 @@
 
 <br />
 <h3 >Na sua vizinhança</h3>
+<MudButton OnClick="CallApi">CHAME A API</MudButton>
 <div class="maps-size">
     <iframe width="600"
             height="600"
@@ -77,6 +82,13 @@
     bool isOpen = false;
     List<int> x = new List<int>(new int[10]);
 
+
+
+    async Task CallApi()
+    {
+        var x = await Http.GetFromJsonAsync<News>("/news/");
+        var z = await Http.GetFromJsonAsync<Reports>("/report/");
+    }
 
     void Presence()
     {

@@ -34,5 +34,7 @@ namespace RecNPet.Services
                 castrated = true,
             }
         };
+
+        public Owner Owner { get; set; }
     }
 }
