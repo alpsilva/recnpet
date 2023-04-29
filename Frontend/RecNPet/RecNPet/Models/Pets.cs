@@ -6,5 +6,8 @@
         public string species;
         public string years;
         public string? image;
+        public string race;
+        public string sex;
+        public bool castrated;
     }
 }

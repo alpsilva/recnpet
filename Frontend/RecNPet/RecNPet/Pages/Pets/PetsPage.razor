@@ -1,11 +1,13 @@
 ﻿@page "/pets"
 @using Models
+@using Services
 @inject NavigationManager navigationManager
+@inject PetInfoService petInfos
 
 <div class="pets-container align-items-center justify-content-center">
-    @foreach(PetsCardInfo pets in petsInfo)
+    @foreach(PetsCardInfo pets in petInfos.infos)
     {
-        <MudPaper Elevation="25" Class="pets-card" onclick="@GoTopetDetailsPage">
+        <MudPaper Elevation="25" Class="pets-card" onclick="@(() => GoTopetDetailsPage(pets))">
             <div class="pets-card-container">
                 <MudImage Src="images/dog.jpg" Class="pet-image rounded-circle mx-auto"/>
                 <div class="pet-title">@pets.name</div>
@@ -25,31 +27,11 @@
 <MudButton Variant="Variant.Outlined" Color="Color.Warning" Class="fixed-button">conta gov.br</MudButton>
 
 @code {
-    List<PetsCardInfo> petsInfo = new List<PetsCardInfo>
-    {
-        new PetsCardInfo
-        {
-            name = "Rufus",
-            species = "Cachorro",
-            years = "2 anos",
-        },
-        new PetsCardInfo
-        {
-            name = "Rufus",
-            species = "Cachorro",
-            years = "2 anos"
-        },
-        new PetsCardInfo
-        {
-            name = "Rufus",
-            species = "Cachorro",
-            years = "2 anos"
-        }
-    };
 
-    void GoTopetDetailsPage()
+    void GoTopetDetailsPage(PetsCardInfo info)
     {
-        navigationManager.NavigateTo("/pet-details");
+        int index = petInfos.infos.IndexOf(info);
+        navigationManager.NavigateTo($"/pet-details/{index}");
     }
 }
 
@@ -68,6 +50,9 @@
         flex-wrap: wrap;
         padding-top: 8px;
     }
+        .pets-container:hover {
+            cursor: pointer;
+        }
 
     .pets-card {
         border-radius: 12px;

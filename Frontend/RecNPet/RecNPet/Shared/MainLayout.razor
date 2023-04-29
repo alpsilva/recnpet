@@ -19,8 +19,8 @@
     else
     {
         <div class="page-header-div">
-            <MudIconButton Href="/" Icon="@Icons.Material.Filled.ArrowBackIos"  Color="Color.Warning"/>
-            <p class="page-header-page-name">VOLTAR À TELA INICIAL</p>
+                <MudIconButton OnClick="ReturnToPage" Icon="@Icons.Material.Filled.ArrowBackIos" Color="Color.Warning" />
+                <p class="page-header-page-name">@GetPagePortugueseName()</p>
         </div>
     }
     </MudAppBar>
@@ -47,11 +47,11 @@
 @code {
     Dictionary<string, string> urlToPortugueseName = new Dictionary<string, string>()
     {
-        { "campaign", "Campanha" },
-        { "pets", "Meus pets" },
-        { "pet-details", "Detalhes do pet" },
-        { "news", "Notícia" },
-        { "user", "Página do usuário" },
+        { "campaign", "VOLTAR À TELA INICIAL" },
+        { "pets", "VOLTAR À TELA INICIAL" },
+        { "pet-details", "VOLTAR AOS PETS" },
+        { "news", "VOLTAR À TELA INICIAL" },
+        { "user", "VOLTAR À TELA INICIAL" },
     };
     MudTheme MyCustomTheme = new MudTheme()
         {
@@ -73,9 +73,26 @@
 
     public bool _drawerOpen = true;
 
+    void ReturnToPage()
+    {
+        string relativeUrl = navigationManager.ToBaseRelativePath(navigationManager.Uri);
+
+        switch (relativeUrl)
+        {
+            case string s when s.StartsWith("pet-details"):
+                navigationManager.NavigateTo("/pets");
+                break;
+            default:
+                navigationManager.NavigateTo("/");
+                break;
+        }
+    }
+
     string GetPagePortugueseName()
     {
         string pageName = navigationManager.ToBaseRelativePath(navigationManager.Uri);
+
+        if (pageName.StartsWith("pet-details")) return urlToPortugueseName["pet-details"];
         return urlToPortugueseName[pageName];
     }
 
