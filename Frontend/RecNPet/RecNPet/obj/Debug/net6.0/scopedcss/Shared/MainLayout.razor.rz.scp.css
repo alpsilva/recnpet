@@ -1,0 +1,129 @@
+.page-header-div[b-9k1usiyntm] {
+    display: flex;
+}
+
+.page-header-page-name[b-9k1usiyntm] {
+    margin-top: 0;
+    font-weight: 500;
+    align-self: center;
+    margin-bottom: 0;
+    color: black;
+}
+
+.page[b-9k1usiyntm] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-9k1usiyntm] {
+    flex: 1;
+}
+
+.sidebar[b-9k1usiyntm] {
+    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+}
+
+.top-row[b-9k1usiyntm] {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row[b-9k1usiyntm]  a, .top-row[b-9k1usiyntm]  .btn-link {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+        text-decoration: none;
+    }
+
+        .top-row[b-9k1usiyntm]  a:hover, .top-row[b-9k1usiyntm]  .btn-link:hover {
+            text-decoration: underline;
+        }
+
+        .top-row[b-9k1usiyntm]  a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+@media (max-width: 640.98px) {
+    .top-row:not(.auth)[b-9k1usiyntm] {
+        display: none;
+    }
+
+    .top-row.auth[b-9k1usiyntm] {
+        justify-content: space-between;
+    }
+
+    .top-row[b-9k1usiyntm]  a, .top-row[b-9k1usiyntm]  .btn-link {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-9k1usiyntm] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-9k1usiyntm] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-9k1usiyntm] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+        .top-row.auth[b-9k1usiyntm]  a:first-child {
+            flex: 1;
+            text-align: right;
+            width: 0;
+        }
+
+    .top-row[b-9k1usiyntm], article[b-9k1usiyntm] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+.pets-button-container[b-9k1usiyntm] {
+    margin-top: 8px;
+}
+
+.pets-subtitle[b-9k1usiyntm] {
+    font-size: 10px;
+    color: black;
+    margin-top: -20px;
+    text-align: center;
+    color: white;
+}
+
+.pets-button[b-9k1usiyntm]{
+    padding: 8px !important;
+}
+
+.person-text[b-9k1usiyntm] {
+    margin-top: 16px;
+}
+
+    .person-text .title[b-9k1usiyntm] {
+        font-family: 'Xilosa';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 20px;
+    }
+
+    .person-text .subtitle[b-9k1usiyntm] {
+        font-family: 'Sora';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 13px;
+    }

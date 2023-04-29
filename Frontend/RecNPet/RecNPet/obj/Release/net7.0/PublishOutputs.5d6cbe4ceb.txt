@@ -1,0 +1,1 @@
+C:\Dev\hacka\recnpet\Frontend\RecNPet\RecNPet\bin\Release\net7.0\publish\web.config

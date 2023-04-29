@@ -1,0 +1,137 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\bin\\Debug\\net6.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\obj\\Debug\\net6.0\\build-gz\\gj5IDxMe.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\obj\\Debug\\net6.0\\scopedcss\\bundle\\RecNPet.styles.css",
+      "PackagePath": "staticwebassets\\RecNPet.styles.css"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\obj\\Debug\\net6.0\\service-worker-assets.js",
+      "PackagePath": "staticwebassets\\service-worker-assets.js"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\obj\\Debug\\net6.0\\service-worker\\service-worker.published.js",
+      "PackagePath": "staticwebassets\\service-worker.js"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\README.md",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\icon-512.png",
+      "PackagePath": "staticwebassets\\icon-512.png"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\images\\add.svg",
+      "PackagePath": "staticwebassets\\images\\add.svg"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\images\\badge.svg",
+      "PackagePath": "staticwebassets\\images\\badge.svg"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\images\\dog.jpg",
+      "PackagePath": "staticwebassets\\images\\dog.jpg"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\images\\icon-192.png",
+      "PackagePath": "staticwebassets\\images\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\images\\maxresdefault.jpg",
+      "PackagePath": "staticwebassets\\images\\maxresdefault.jpg"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\images\\petsIcon.svg",
+      "PackagePath": "staticwebassets\\images\\petsIcon.svg"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\manifest.json",
+      "PackagePath": "staticwebassets\\manifest.json"
+    },
+    {
+      "Id": "C:\\Dev\\hacka\\recnpet\\Frontend\\RecNPet\\RecNPet\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.RecNPet.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.RecNPet.props",
+      "PackagePath": "build\\RecNPet.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.RecNPet.props",
+      "PackagePath": "buildMultiTargeting\\RecNPet.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.RecNPet.props",
+      "PackagePath": "buildTransitive\\RecNPet.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
