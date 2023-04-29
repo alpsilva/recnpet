@@ -12,13 +12,15 @@ async def register_owner():
     """ Returns the number of animals distributed between castrated and not, and grouped by sex. """
     response = db.get_all_data("owners")
     if response is None:
-        raise HTTPException(status_code=404, detail="Something went wrong while inserting log.")
+        raise HTTPException(status_code=404, detail="Something went wrong while retrieving data.")
     
     pets = []
-    for value in response.values(): 
-            pets += value.get("pets", [])
-
-    pets = list(filter(lambda x : x is not None, pets))
+    for value in response.values():
+            address = value.get("address", {})
+            for pet in value.get("pets", []):
+                 if pet is not None:
+                      pet["address"] = address
+                      pets.append(pet)
 
     castration = {
         "male": {
@@ -31,7 +33,27 @@ async def register_owner():
         }
     }
 
+    locations = {}
+
     for pet in pets:
+        location = pet["address"]["neighborhood"]
+        if location not in locations:
+             locations[location] = {
+                  "pets": 0,
+                  "diseases": {},
+                  "totalDiseases": 0
+             }
+
+        locations[location]["pets"] += 1
+        
+        pet_diseases = pet.get("diseases", [])
+        for disease in pet_diseases:
+            locations[location]["totalDiseases"] += 1
+            disease_name = disease["name"]
+            if disease_name not in locations[location]["diseases"]:
+                locations[location]["diseases"][disease_name] = 0
+            locations[location]["diseases"][disease_name] += 1
+
         sex = "male"
         status = "castrated"
 
@@ -44,5 +66,6 @@ async def register_owner():
         castration[sex][status] += 1
 
     return {
-        "castration": castration
+        "castration": castration,
+        "locations": locations
     }

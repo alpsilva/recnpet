@@ -132,7 +132,7 @@ async def register_disease(owner_id: str, pet_id: str, request: NewDiseaseInput)
         current_pets = list(current_pets.values())
 
     for pet in current_pets:
-        if pet["chip"] == pet_id:
+        if pet["chip"] == int(pet_id):
             if "diseases" not in pet:
                 pet["diseases"] = []
             pet["diseases"].append(new_disease)
