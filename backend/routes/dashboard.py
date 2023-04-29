@@ -40,6 +40,7 @@ async def get_dashboard_infos():
         if location not in locations:
              locations[location] = {
                   "pets": 0,
+                  "vaccines": {},
                   "diseases": {},
                   "totalDiseases": 0
              }
@@ -53,6 +54,13 @@ async def get_dashboard_infos():
             if disease_name not in locations[location]["diseases"]:
                 locations[location]["diseases"][disease_name] = 0
             locations[location]["diseases"][disease_name] += 1
+
+        pet_vaccines = pet.get("vaccines", [])
+        for vaccine in pet_vaccines:
+            vaccine_name = vaccine["name"]
+            if vaccine_name not in locations[location]["vaccines"]:
+                locations[location]["vaccines"][vaccine_name] = 0
+            locations[location]["vaccines"][vaccine_name] += 1
 
         sex = "male"
         status = "castrated"

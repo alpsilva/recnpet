@@ -104,7 +104,7 @@ async def register_vaccine(owner_id: str, pet_id: str, request: NewVaccineInput)
         current_pets = list(current_pets.values())
 
     for pet in current_pets:
-        if pet["chip"] == pet_id:
+        if pet["chip"] == int(pet_id):
             if "vaccines" not in pet:
                 pet["vaccines"] = []
             pet["vaccines"].append(new_vaccine)
