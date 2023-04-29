@@ -1,0 +1,86 @@
+﻿@page "/pet-details/{index:int}"
+@layout PagesLayout
+@using Models
+@using Services
+@inject PetInfoService petInfos
+
+<div class="pet-container align-items-center justify-content-center">
+    <MudImage Src="images/dog.jpg" Class="pet-image rounded-circle mx-auto" />
+    <h2 style="text-align: center;">@info.name</h2>
+    <MudPaper Elevation="25" Class="pets-card">
+        <div class="pets-card-container">
+            <div class="pet-title">
+                <MudImage Src="images/badge.svg"/>
+                <p class="pet-title-text">Ficha básica</p>
+            </div>
+            <div>@($"Espécie: {info.species}")</div>
+            <div>@($"Idade: {info.years}")</div>
+            <div>@($"Raça: {info.species}")</div>
+            <div>@($"Sexo: {info.sex}")</div>
+            <div>@($"Castrado: {(info.castrated ? "Sim" : "Não")}")</div>
+        </div>
+    </MudPaper>
+</div>
+<br />
+<div style="text-align: center;">
+    <MudFab Label="CARTÃO DE VACINA" Color="Color.Warning" />
+    <MudFab Label="HISTÓRICO" Color="Color.Warning" />
+</div>
+
+
+@code {
+    [Parameter]
+    public int index { get; set; }
+
+    PetsCardInfo info = new PetsCardInfo();
+
+    protected override void OnParametersSet()
+    {
+        info = petInfos.infos[index];
+    }
+}
+
+
+<style>
+    .pet-image {
+        margin-top: 24px;
+        border: 4px solid rgba(0, 0, 0, 0.5);
+        width: 124px;
+        height: 124px;
+    }
+
+    .pet-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px;
+        gap: 12px;
+    }
+
+    .pet-title-text {
+        margin-top: 0;
+        font-weight: 500;
+        line-height: 1.2;
+        font-size: calc(1.3rem + .6vw);
+        margin-bottom: 0;
+    }
+
+    .pet-container {
+        display: grid;
+        gap: 20px;
+        padding-top: 8px;
+    }
+
+    .pets-card {
+        border-radius: 12px;
+        background-color: #ED8E00;
+        width: 287px;
+    }
+
+    .pets-card-container {
+        display: grid;
+        color: white;
+        grid-gap: 10px;
+        margin: 32px;
+    }
+</style>

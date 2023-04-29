@@ -1,0 +1,154 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager navigationManager
+
+<MudThemeProvider Theme="MyCustomTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudLayout>
+    <MudAppBar Elevation="25">
+        <div class="pets-button-container">
+            <MudIconButton Href="/pets" Class="pets-button">
+                <MudAvatar Image="images/petsIcon.svg" />
+            </MudIconButton>
+            <p class="pets-subtitle">
+                Meus Pets
+            </p>
+        </div>
+        <MudSpacer />
+        <div class="person-text">
+            <p class="title">Olá, Fulano</p>
+            <p class="subtitle">Como você quer proteger seu pet hoje?</p>
+        </div>
+        <MudSpacer />
+        <MudBadge Overlap="true" Dot="true" Color="Color.Info">
+            <MudIconButton Icon="@Icons.Material.Filled.NotificationsNone" Size="Size.Large" />
+        </MudBadge>
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+
+@code {
+    Dictionary<string, string> urlToPortugueseName = new Dictionary<string, string>()
+    {
+        { "campaign", "VOLTAR À TELA INICIAL" },
+        { "pets", "VOLTAR À TELA INICIAL" },
+        { "pet-details", "VOLTAR AOS PETS" },
+        { "news", "VOLTAR À TELA INICIAL" },
+        { "user", "VOLTAR À TELA INICIAL" },
+    };
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                AppbarBackground = "#ED8000",
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Blue.Lighten1
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "300px",
+                AppbarHeight = "120px",
+            },
+        };
+
+
+    public bool _drawerOpen = true;
+
+    string appbarPadding = "0px";
+
+    void ReturnToPage()
+    {
+        string relativeUrl = navigationManager.ToBaseRelativePath(navigationManager.Uri);
+
+        switch (relativeUrl)
+        {
+            case string s when s.StartsWith("pet-details"):
+                navigationManager.NavigateTo("/pets");
+                break;
+            default:
+                navigationManager.NavigateTo("/");
+                break;
+        }
+    }
+
+    string GetPagePortugueseName()
+    {
+        string pageName = navigationManager.ToBaseRelativePath(navigationManager.Uri);
+
+        if (pageName.StartsWith("pet-details")) return urlToPortugueseName["pet-details"];
+        return urlToPortugueseName[pageName];
+    }
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    protected override void OnInitialized()
+    {
+        if (navigationManager.ToBaseRelativePath(navigationManager.Uri) == "")
+        {
+            appbarPadding = "32px";
+            MyCustomTheme = new MudTheme()
+                {
+                    Palette = new PaletteLight()
+                    {
+                        AppbarBackground = "#ED8000",
+                    },
+                    PaletteDark = new PaletteDark()
+                    {
+                        Primary = Colors.Blue.Lighten1
+                    },
+
+                    LayoutProperties = new LayoutProperties()
+                    {
+                        DrawerWidthLeft = "260px",
+                        DrawerWidthRight = "300px",
+                        AppbarHeight = "120px",
+                    },
+                    
+                };
+        }
+        else
+        {
+            appbarPadding = "16px";
+            MyCustomTheme = new MudTheme()
+                {
+                    Palette = new PaletteLight()
+                    {
+                        AppbarBackground = "#FFF7EC",
+                    },
+                    PaletteDark = new PaletteDark()
+                    {
+                        Primary = Colors.Blue.Lighten1
+                    },
+
+                    LayoutProperties = new LayoutProperties()
+                    {
+                        DrawerWidthLeft = "260px",
+                        DrawerWidthRight = "300px"
+                    },
+                };
+        }
+        StateHasChanged();
+    }
+
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("Personal", href: "#"),
+        new BreadcrumbItem("Dashboard", href: "#"),
+    };
+
+}

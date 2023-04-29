@@ -1,0 +1,111 @@
+﻿@page "/pets"
+@layout PagesLayout
+@using Models
+@using Services
+@inject NavigationManager navigationManager
+@inject PetInfoService petInfos
+
+<div class="pets-container align-items-center justify-content-center">
+    @foreach(PetsCardInfo pets in petInfos.infos)
+    {
+        <MudPaper Elevation="25" Class="pets-card" onclick="@(() => GoTopetDetailsPage(pets))">
+            <div class="pets-card-container">
+                <MudImage Src="images/dog.jpg" Class="pet-image rounded-circle mx-auto"/>
+                <div class="pet-title">@pets.name</div>
+                <div class="pet-subtitle">
+                    <span>@pets.species</span>
+                    <span>@pets.years</span>
+                </div>
+            </div>
+        </MudPaper>
+    }
+
+    <MudPaper Elevation="25" Class="pets-card-add align-items-center justify-content-center">
+        <img src="images/add.svg"/>
+    </MudPaper>
+</div>
+
+<MudButton Variant="Variant.Outlined" Color="Color.Warning" Class="fixed-button">conta gov.br</MudButton>
+
+@code {
+
+    void GoTopetDetailsPage(PetsCardInfo info)
+    {
+        int index = petInfos.infos.IndexOf(info);
+        navigationManager.NavigateTo($"/pet-details/{index}");
+    }
+}
+
+<style>
+    .fixed-button {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: fit-content;
+    }
+
+    .pets-container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding-top: 8px;
+    }
+        .pets-container:hover {
+            cursor: pointer;
+        }
+
+    .pets-card {
+        border-radius: 12px;
+        background-color: #ED8E00;
+        width: 144px;
+        height: 144px; 
+    }
+
+    .pets-card-add {
+        display: flex;
+        background: rgba(255, 153, 0, 0.5);
+        opacity: 0.6;
+        border: 2px solid #FF9900;
+        border-radius: 12px;
+        width: 144px;
+        height: 144px;
+    }
+
+    .pets-card-container {
+        margin-top: 12px;
+        display: grid;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .pet-image {
+        width: 60px;
+        height: 60px;
+        border: 2px solid #FFFFFF;
+    }
+
+    .pet-title {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 15px;
+        margin-bottom: 8px;
+        margin-top: 8px;
+        color: #FFFFFF;
+    }
+
+    .pet-subtitle {
+        color: #FFFFFF;
+        display: flex;
+        gap: 8px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 0;
+        font-size: 10px;
+        line-height: 10px;
+    }
+
+
+</style>
